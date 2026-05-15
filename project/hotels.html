@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WattProfit for hotels, independent solar ROI with SEAI and ACA modelled</title>
+<meta name="description" content="What will solar actually save your hotel? Exact payback year and ACA tax relief modelled in 24 hours. Independent, no installer commission." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:    '#0A1226',
+          body:   '#3F4756',
+          mute:   '#6B7280',
+          line:   '#E5E2DA',
+          paper:  '#FAFAF7',
+          accent: '#145735',
+          accentDark: '#0E3D24',
+          accent2: '#1E7A4A',
+          sun:     '#FDEAB4',
+          sunSoft: '#FDF4DC',
+          sunMute: '#FBF1D2',
+          warn:   '#B45309',
+          ok:     '#15803D',
+        },
+        fontFamily: {
+          sans:  ['"Instrument Sans"', 'ui-sans-serif', 'system-ui'],
+          serif: ['"Instrument Serif"', 'ui-serif', 'Georgia'],
+        },
+        boxShadow: {
+          card: '0 1px 0 #E5E2DA, 0 1px 2px rgba(10,18,38,0.04)',
+          lift: '0 8px 24px -8px rgba(10,18,38,0.18), 0 2px 4px rgba(10,18,38,0.06)',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Instrument Sans', system-ui, sans-serif; color: #3F4756; background: #FFFFFF; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  h1,h2,h3,h4 { color: #0A1226; letter-spacing: -0.01em; font-weight: 600; }
+  h1 { letter-spacing: -0.025em; }
+  .num { font-feature-settings: "tnum" 1, "ss01" 1; }
+  .dotted { background-image: radial-gradient(#D8D3C7 1px, transparent 1px); background-size: 14px 14px; }
+  .ruled > * + * { border-top: 1px solid #E5E2DA; }
+  .accent-link { color: #145735; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .faq-plus { transform: rotate(45deg); }
+  .faq-plus { transition: transform .15s ease; }
+  .chip { display:inline-flex; align-items:center; gap:.4rem; padding:.25rem .55rem; border:1px solid #E5E2DA; border-radius: 999px; font-size:.72rem; color:#0A1226; background:#fff; }
+  .chip-dot { width:6px; height:6px; border-radius:999px; background:#145735; }
+  .btn-primary { background:#145735; color:#fff; }
+  .btn-primary:hover { background:#0E3D24; }
+  .underline-marker { background-image: linear-gradient(transparent 55%, rgba(253,234,180,0.85) 55%); padding: 0 .08em; }
+  input, select { font-family: inherit; }
+  .photo-placeholder {
+    background:
+      linear-gradient(135deg, rgba(10,18,38,0.05), rgba(10,18,38,0.0) 60%),
+      repeating-linear-gradient(45deg, #ECE9DF 0 12px, #F4F1E8 12px 24px);
+  }
+</style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- ============================ NAV ============================ -->
+<header class="border-b border-line bg-white sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 h-14 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="16" r="16" fill="#FDEAB4"/>
+        <circle cx="16" cy="16" r="5" fill="#145735"/>
+        <line x1="16" y1="6" x2="16" y2="9" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="16" y1="26" x2="16" y2="23" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="6" y1="16" x2="9" y2="16" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="26" y1="16" x2="23" y2="16" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="8.9" y1="8.9" x2="11" y2="11" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="23.1" y1="8.9" x2="21" y2="11" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="8.9" y1="23.1" x2="11" y2="21" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="23.1" y1="23.1" x2="21" y2="21" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <span class="font-semibold text-ink tracking-tight">WattProfit</span>
+      <span class="hidden sm:inline text-xs text-mute pl-2 ml-2 border-l border-line">Independent ROI, Ireland</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-body">
+      <a href="dairy.html" class="hover:text-ink">Dairy farms</a>
+      <a href="hotels.html" class="text-ink underline underline-offset-4 decoration-accent decoration-2">Hotels</a>
+      <a href="index.html#how" class="hover:text-ink">How it works</a>
+      <a href="index.html#sample" class="hover:text-ink">Sample report</a>
+      <a href="#faq" class="hover:text-ink">FAQ</a>
+    </nav>
+    <a href="#get-report" class="hidden sm:inline-flex btn-primary text-sm font-medium px-3.5 py-2 rounded-md">Get my hotel payback year</a>
+  </div>
+</header>
+
+<!-- breadcrumb -->
+<div class="border-b border-line bg-paper">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-2.5 text-xs text-mute">
+    <a href="index.html" class="hover:text-ink">Home</a>
+    <span class="px-1.5">/</span>
+    <span class="text-ink">Hotels</span>
+  </div>
+</div>
+
+<!-- ============================ HERO ============================ -->
+<section class="relative overflow-hidden border-b border-line">
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(1100px 380px at 78% 0%, rgba(253,234,180,0.55), transparent 70%);"></div>
+  <div class="absolute inset-0 dotted opacity-30 pointer-events-none"></div>
+  <div class="relative max-w-6xl mx-auto px-5 lg:px-8 pt-12 pb-14 lg:pt-20 lg:pb-24 grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+    <div class="lg:col-span-7">
+      <div class="flex flex-wrap gap-2 mb-5">
+        <span class="chip"><span class="chip-dot"></span>For Irish hotels</span>
+        <span class="chip">SEAI Commercial Solar + 100% ACA</span>
+        <span class="chip">24-hour turnaround</span>
+      </div>
+
+      <h1 class="font-serif italic text-[40px] sm:text-[52px] lg:text-[64px] leading-[1.04] text-ink">
+        What will solar actually save your hotel?
+        <span class="not-italic font-sans font-semibold block mt-2">Exact payback year and ACA tax relief, modelled in 24 hours.</span>
+      </h1>
+
+      <p class="mt-6 text-lg lg:text-xl text-body max-w-2xl leading-relaxed">
+        We model your real half-hourly load. Kitchen morning spike, midday HVAC, evening laundry, the overnight floor that never falls below 18 kW. SEAI Commercial Solar and 100% first-year ACA priced in correctly. The payback year you can show a board, an owner, or a lender.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href="#get-report" class="btn-primary inline-flex items-center gap-2 px-5 py-3 rounded-md font-medium text-[15px]">
+          Get my hotel's payback year
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="index.html#sample" class="inline-flex items-center gap-2 px-4 py-3 rounded-md font-medium text-[15px] text-ink border border-line bg-white hover:bg-paper">
+          See a sample report
+        </a>
+      </div>
+
+      <div class="mt-7 bg-paper border border-line rounded-lg p-4 max-w-2xl">
+        <div class="flex items-start gap-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#145735" stroke-width="1.8" class="shrink-0 mt-0.5"><path d="M12 2v20M5 9l7-7 7 7M5 15l7 7 7-7"/></svg>
+          <div>
+            <div class="text-sm font-semibold text-ink">Hotels can claim 100% first-year ACA on qualifying solar.</div>
+            <div class="text-sm text-body mt-1 leading-relaxed">We model the cash impact of that, not just the headline grant. On a typical 60-room hotel, the ACA line is worth more than the SEAI line. Most installer quotes leave it out of the payback calculation entirely.</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-5 text-sm text-mute">
+        <span class="text-ink font-medium">Independent.</span> &nbsp;·&nbsp;
+        <span class="text-ink font-medium">€395 all-in.</span> &nbsp;·&nbsp;
+        <span class="text-ink font-medium">Signed off by a chartered engineer.</span>
+      </p>
+    </div>
+
+    <!-- HERO VISUAL: hotel 24-hour load shape -->
+    <div class="lg:col-span-5">
+      <figure class="bg-white border border-line rounded-xl shadow-card overflow-hidden">
+        <figcaption class="flex items-center justify-between px-4 py-3 border-b border-line">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-accent"></span>
+            <span class="text-xs font-medium text-ink">A real hotel day, 62 rooms, Co. Kerry</span>
+          </div>
+          <span class="text-[11px] text-mute">kW, half-hourly</span>
+        </figcaption>
+
+        <div class="px-4 pt-4 pb-2">
+          <svg viewBox="0 0 480 260" class="w-full h-auto" aria-label="Hotel half-hourly load profile with solar generation overlay">
+            <g stroke="#EFEEE8" stroke-width="1">
+              <line x1="40" y1="30"  x2="470" y2="30"/>
+              <line x1="40" y1="80"  x2="470" y2="80"/>
+              <line x1="40" y1="130" x2="470" y2="130"/>
+              <line x1="40" y1="180" x2="470" y2="180"/>
+              <line x1="40" y1="220" x2="470" y2="220"/>
+            </g>
+            <g font-size="9" fill="#9CA3AF" font-family="Instrument Sans">
+              <text x="2"  y="34">120</text>
+              <text x="8"  y="84">90</text>
+              <text x="8"  y="134">60</text>
+              <text x="8"  y="184">30</text>
+              <text x="14" y="224">0</text>
+            </g>
+            <g font-size="9" fill="#9CA3AF" font-family="Instrument Sans">
+              <text x="40"  y="240">00</text>
+              <text x="125" y="240">06</text>
+              <text x="225" y="240">12</text>
+              <text x="325" y="240">18</text>
+              <text x="450" y="240">23</text>
+            </g>
+
+            <!-- solar -->
+            <path d="M40,220 L100,220 L140,200 L180,160 L220,118 L260,98 L300,115 L340,155 L380,195 L430,218 L470,220 Z"
+                  fill="#1E7A4A" fill-opacity="0.14"/>
+            <path d="M40,220 L100,220 L140,200 L180,160 L220,118 L260,98 L300,115 L340,155 L380,195 L430,218 L470,220"
+                  fill="none" stroke="#1E7A4A" stroke-width="1.5"/>
+
+            <!-- hotel load: overnight base, breakfast spike, midday HVAC plateau, evening laundry & dinner -->
+            <path d="M40,175 L70,178 L90,165 L120,108 L140,90 L160,118 L185,128 L210,118 L240,108 L275,98 L310,100 L335,118 L355,90 L380,75 L410,98 L440,140 L470,168"
+                  fill="none" stroke="#0A1226" stroke-width="2"/>
+
+            <g font-size="9.5" font-family="Instrument Sans">
+              <line x1="130" y1="90" x2="148" y2="50" stroke="#0A1226" stroke-width="0.8"/>
+              <text x="150" y="46" fill="#0A1226" font-weight="600">Breakfast kitchen</text>
+              <text x="150" y="58" fill="#6B7280">grills + extract + DHW</text>
+
+              <line x1="290" y1="100" x2="305" y2="50" stroke="#0A1226" stroke-width="0.8"/>
+              <text x="304" y="46" fill="#0A1226" font-weight="600">Midday HVAC</text>
+              <text x="304" y="58" fill="#6B7280">conference + kitchen</text>
+
+              <line x1="380" y1="75" x2="395" y2="46" stroke="#0A1226" stroke-width="0.8"/>
+              <text x="362" y="42" fill="#0A1226" font-weight="600">Dinner + laundry</text>
+
+              <line x1="230" y1="120" x2="240" y2="42" stroke="#1E7A4A" stroke-width="0.8"/>
+              <text x="244" y="38" fill="#1E7A4A" font-weight="600">PV generation</text>
+            </g>
+          </svg>
+        </div>
+        <div class="grid grid-cols-3 border-t border-line text-center">
+          <div class="py-3">
+            <div class="text-[11px] text-mute">Self-consumption</div>
+            <div class="text-sm font-semibold text-ink num">74%</div>
+          </div>
+          <div class="py-3 border-x border-line">
+            <div class="text-[11px] text-mute">Year 1 ACA</div>
+            <div class="text-sm font-semibold text-ink num">€21,200</div>
+          </div>
+          <div class="py-3">
+            <div class="text-[11px] text-mute">Payback</div>
+            <div class="text-sm font-semibold text-accent2 num">Year 6.9</div>
+          </div>
+        </div>
+      </figure>
+      <p class="mt-3 text-xs text-mute leading-relaxed">The hotel load shape sits under solar more cleanly than dairy. The evening peak is where the battery economics start to make sense.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CASE STUDY ============================ -->
+<section class="border-b border-line bg-sunSoft">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-14 lg:py-20">
+    <div class="grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <div class="text-xs uppercase tracking-wider text-mute">Real Irish hotel, real numbers</div>
+        <h2 class="text-2xl lg:text-3xl mt-1">Lakeview House Hotel, Co. Kerry. 62 rooms, owner-operated, modelled February 2025.</h2>
+        <p class="text-body mt-4 leading-relaxed">Two installers had quoted. One pitched 70 kWp on the rear roof at a payback of year 4.8. The other pitched 95 kWp plus battery at year 5.6. Both used a flat tariff assumption and neither costed the ACA into the cash flow.</p>
+        <p class="text-body mt-4 leading-relaxed">We modelled the half-hourly data, included the ACA at the hotel's 12.5% corporation tax rate, and recommended 48 kWp with no battery. Payback came in honestly at year 6.9. The owner is more comfortable with the smaller number on a real basis than the optimistic one on optimistic assumptions.</p>
+        <a href="#get-report" class="mt-6 btn-primary inline-flex items-center gap-2 px-4 py-2.5 rounded-md font-medium text-sm">Get the same on your hotel</a>
+      </div>
+
+      <div class="lg:col-span-7">
+        <figure class="rounded-xl border border-line overflow-hidden aspect-[4/3] relative bg-paper">
+          <img src="assets/lakeview-hotel-kerry.jpg" alt="Lakeview House Hotel, Co. Kerry, with rooftop solar PV, photographed at dusk" class="absolute inset-0 w-full h-full object-cover"/>
+          <div class="absolute inset-x-0 bottom-0 p-4 lg:p-5">
+          <div class="bg-white/95 backdrop-blur border border-line rounded-md p-4 w-full">
+            <div class="grid grid-cols-4 gap-4 text-center">
+              <div>
+                <div class="text-[10px] uppercase tracking-wider text-mute">Location</div>
+                <div class="text-sm font-semibold text-ink mt-1">Co. Kerry</div>
+              </div>
+              <div>
+                <div class="text-[10px] uppercase tracking-wider text-mute">Rooms</div>
+                <div class="text-sm font-semibold text-ink num mt-1">62</div>
+              </div>
+              <div>
+                <div class="text-[10px] uppercase tracking-wider text-mute">Installed</div>
+                <div class="text-sm font-semibold text-ink num mt-1">48 kWp</div>
+              </div>
+              <div>
+                <div class="text-[10px] uppercase tracking-wider text-mute">Payback</div>
+                <div class="text-sm font-semibold text-accent2 num mt-1">Yr 6.9</div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </figure>
+        <p class="text-xs text-mute mt-3">Lakeview House Hotel, Co. Kerry. Photographed with permission, May 2025.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SIZING GUIDE ============================ -->
+<section class="border-b border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-14 lg:py-20">
+    <div class="text-xs uppercase tracking-wider text-mute">Sizing guide</div>
+    <h2 class="text-2xl lg:text-3xl mt-1 max-w-2xl">Room count to system size, before we look at your meter.</h2>
+    <p class="text-body mt-3 max-w-2xl leading-relaxed">A useful starting point. The real number depends on your kitchen profile, whether you have a wet leisure centre, your laundry policy (in-house or contracted out), and your average occupancy. We validate against the actual half-hourly data, always.</p>
+
+    <div class="mt-8 bg-white border border-line rounded-xl overflow-hidden">
+      <div class="grid grid-cols-12 px-5 py-3 border-b border-line text-[11px] uppercase tracking-wider text-mute">
+        <div class="col-span-3">Rooms</div>
+        <div class="col-span-3">Typical annual kWh</div>
+        <div class="col-span-2">Indicative kWp</div>
+        <div class="col-span-2">Battery question</div>
+        <div class="col-span-2 text-right">Indicative payback</div>
+      </div>
+      <div class="divide-y divide-line text-sm">
+        <div class="grid grid-cols-12 px-5 py-4 items-center">
+          <div class="col-span-3 text-ink font-medium">20 to 40 rooms</div>
+          <div class="col-span-3 num text-body">~ 220,000 kWh</div>
+          <div class="col-span-2 num text-ink">25 to 35 kWp</div>
+          <div class="col-span-2 text-body">Rarely</div>
+          <div class="col-span-2 num text-right text-ink">Yr 6.5 to 8</div>
+        </div>
+        <div class="grid grid-cols-12 px-5 py-4 items-center bg-paper">
+          <div class="col-span-3 text-ink font-medium">40 to 80 rooms</div>
+          <div class="col-span-3 num text-body">~ 480,000 kWh</div>
+          <div class="col-span-2 num text-ink">45 to 70 kWp</div>
+          <div class="col-span-2 text-body">Sometimes</div>
+          <div class="col-span-2 num text-right text-ink">Yr 6 to 7.5</div>
+        </div>
+        <div class="grid grid-cols-12 px-5 py-4 items-center">
+          <div class="col-span-3 text-ink font-medium">80 to 140 rooms</div>
+          <div class="col-span-3 num text-body">~ 780,000 kWh</div>
+          <div class="col-span-2 num text-ink">90 to 130 kWp</div>
+          <div class="col-span-2 text-body">Often</div>
+          <div class="col-span-2 num text-right text-ink">Yr 5.5 to 7</div>
+        </div>
+        <div class="grid grid-cols-12 px-5 py-4 items-center bg-paper">
+          <div class="col-span-3 text-ink font-medium">140+ rooms, leisure</div>
+          <div class="col-span-3 num text-body">~ 1.2m kWh</div>
+          <div class="col-span-2 num text-ink">150 kWp +</div>
+          <div class="col-span-2 text-body">Usually</div>
+          <div class="col-span-2 num text-right text-ink">Yr 5.5 to 7</div>
+        </div>
+      </div>
+    </div>
+    <p class="text-xs text-mute mt-4">Indicative figures only. We publish the real number for your hotel within 24 hours of receiving your half-hourly data.</p>
+  </div>
+</section>
+
+<!-- ============================ ACA + SEAI DETAIL ============================ -->
+<section class="border-b border-line bg-ink text-white">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-14 lg:py-20 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-5">
+      <div class="text-xs uppercase tracking-wider text-white/50">SEAI plus ACA, modelled together</div>
+      <h2 class="text-white text-2xl lg:text-3xl mt-1">Two reliefs, one cash flow. Most installer quotes only show one.</h2>
+      <p class="text-white/70 mt-4 leading-relaxed">Hotels qualify for SEAI Non-Domestic Microgen (under 50 kWp) or SEAI Commercial Solar (typically 6 kWp to larger commercial scales), plus the Accelerated Capital Allowance against corporation tax on qualifying Triple-E-registered equipment, written off 100% in year one.</p>
+      <p class="text-white/70 mt-3 leading-relaxed">For a profitable owner-operated hotel paying corporation tax at 12.5%, the ACA can be worth €15,000 to €30,000 in year one cash flow on a typical 50 to 100 kWp system. That moves payback by 6 to 14 months.</p>
+    </div>
+    <div class="lg:col-span-7">
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="bg-white/[0.04] border border-white/10 rounded-lg p-5">
+          <div class="text-[11px] uppercase tracking-wider text-white/50">ACA</div>
+          <div class="text-3xl font-semibold text-white num mt-1">100%</div>
+          <p class="text-sm text-white/70 mt-2">First-year capital allowance on Triple-E-registered solar PV equipment.</p>
+        </div>
+        <div class="bg-white/[0.04] border border-white/10 rounded-lg p-5">
+          <div class="text-[11px] uppercase tracking-wider text-white/50">SEAI Commercial Solar</div>
+          <div class="text-3xl font-semibold text-white num mt-1">€162k</div>
+          <p class="text-sm text-white/70 mt-2">Indicative ceiling per site, tapered by capacity band. Subject to current SEAI rates.</p>
+        </div>
+        <div class="bg-white/[0.04] border border-white/10 rounded-lg p-5">
+          <div class="text-[11px] uppercase tracking-wider text-white/50">Combined cash impact, yr 1</div>
+          <div class="text-lg font-semibold text-white mt-1">SEAI grant + ACA at 12.5%</div>
+          <p class="text-sm text-white/70 mt-2">Typically 40 to 55% of the capex back in the door in year one, on a profitable hotel.</p>
+        </div>
+        <div class="bg-white/[0.04] border border-white/10 rounded-lg p-5">
+          <div class="text-[11px] uppercase tracking-wider text-white/50">Common mistake</div>
+          <div class="text-lg font-semibold text-white mt-1">ACA missing from the quote</div>
+          <p class="text-sm text-white/70 mt-2">Installers quote capex against a SEAI grant only. We model the post-tax position.</p>
+        </div>
+      </div>
+      <p class="text-xs text-white/50 mt-4">Confirm with your accountant before drawing the relief. We size the system so the ACA position is defensible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BATTERY VS NO BATTERY ============================ -->
+<section class="border-b border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-14 lg:py-20">
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-5">
+        <div class="text-xs uppercase tracking-wider text-mute">The battery question</div>
+        <h2 class="text-2xl lg:text-3xl mt-1">Hotels have meaningful evening load. Batteries change the maths.</h2>
+        <p class="text-body mt-4 leading-relaxed">A dairy farm rarely justifies a battery. A hotel often does. Your evening dinner service, your laundry cycle, and your second HVAC ramp all sit after the PV has gone to bed. The question is whether the round-trip economics beat the SEM export price.</p>
+        <p class="text-body mt-4 leading-relaxed">We model the no-battery scenario, a 30 kWh battery, and a 60 kWh battery side by side. Roughly a third of the hotels we see justify the storage. The rest do not, and we tell them so.</p>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="bg-white border border-line rounded-xl overflow-hidden">
+          <div class="grid grid-cols-12 px-5 py-3 border-b border-line text-[11px] uppercase tracking-wider text-mute">
+            <div class="col-span-4">Scenario</div>
+            <div class="col-span-2 text-right">Capex</div>
+            <div class="col-span-2 text-right">Self-cons.</div>
+            <div class="col-span-2 text-right">NPV (25y)</div>
+            <div class="col-span-2 text-right">Payback</div>
+          </div>
+          <div class="divide-y divide-line text-sm num">
+            <div class="grid grid-cols-12 px-5 py-3.5 items-center">
+              <div class="col-span-4 text-ink font-medium">48 kWp, no battery</div>
+              <div class="col-span-2 text-right text-ink">€68,200</div>
+              <div class="col-span-2 text-right text-body">74%</div>
+              <div class="col-span-2 text-right text-ink">€142k</div>
+              <div class="col-span-2 text-right text-accent font-semibold">Yr 6.9</div>
+            </div>
+            <div class="grid grid-cols-12 px-5 py-3.5 items-center bg-paper">
+              <div class="col-span-4 text-ink font-medium">48 kWp + 30 kWh battery</div>
+              <div class="col-span-2 text-right text-ink">€89,800</div>
+              <div class="col-span-2 text-right text-body">88%</div>
+              <div class="col-span-2 text-right text-ink">€151k</div>
+              <div class="col-span-2 text-right text-ink">Yr 7.8</div>
+            </div>
+            <div class="grid grid-cols-12 px-5 py-3.5 items-center">
+              <div class="col-span-4 text-ink font-medium">48 kWp + 60 kWh battery</div>
+              <div class="col-span-2 text-right text-ink">€108,400</div>
+              <div class="col-span-2 text-right text-body">94%</div>
+              <div class="col-span-2 text-right text-ink">€148k</div>
+              <div class="col-span-2 text-right text-ink">Yr 8.6</div>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-mute mt-3">Lakeview House numbers, indicative. The 30 kWh battery wins on NPV but loses on payback. The owner picked no battery. The decision is yours, on real workings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SUSTAINABILITY / ESG ============================ -->
+<section class="border-b border-line bg-paper">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-14 lg:py-20">
+    <div class="grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <div class="text-xs uppercase tracking-wider text-mute">Sustainability, accurately stated</div>
+        <h2 class="text-2xl lg:text-3xl mt-1">For the marketing director, the ESG report, and the Green Hospitality submission.</h2>
+        <p class="text-body mt-4 leading-relaxed">We include a calibrated carbon line in the report, computed against the all-island grid intensity for the relevant year, not a generic European number. It is the figure your sustainability consultant or Green Hospitality assessor can lift directly into your annual return.</p>
+      </div>
+      <div class="lg:col-span-7 grid sm:grid-cols-3 gap-4">
+        <div class="bg-white border border-line rounded-lg p-5">
+          <div class="text-[11px] uppercase tracking-wider text-mute">CO₂ avoided</div>
+          <div class="text-2xl font-semibold text-ink num mt-1">14.2 t</div>
+          <p class="text-xs text-body mt-2">Annual, on the 48 kWp Kerry case.</p>
+        </div>
+        <div class="bg-white border border-line rounded-lg p-5">
+          <div class="text-[11px] uppercase tracking-wider text-mute">Equivalent</div>
+          <div class="text-2xl font-semibold text-ink mt-1">7 family cars</div>
+          <p class="text-xs text-body mt-2">Off the road for one year.</p>
+        </div>
+        <div class="bg-white border border-line rounded-lg p-5">
+          <div class="text-[11px] uppercase tracking-wider text-mute">Green Hospitality</div>
+          <div class="text-sm font-semibold text-ink mt-1">Aligns with renewable energy criteria for Gold award</div>
+          <p class="text-xs text-body mt-2">Documentation suitable for submission.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ LEAD FORM + TRUST ============================ -->
+<section id="get-report" class="border-b border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-14 lg:py-20 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-5">
+      <div class="text-xs uppercase tracking-wider text-mute">Start your hotel report</div>
+      <h2 class="text-2xl lg:text-3xl mt-1">Five fields. One working day. The number you came for.</h2>
+      <p class="text-body mt-4 leading-relaxed">We come back within one working day with a quote (€395 unless your hotel has unusually complex sub-metering) and the ESB Networks data request you'll need to forward.</p>
+
+      <div class="mt-8 bg-paper border border-line rounded-xl p-5">
+        <div class="text-[11px] uppercase tracking-wider text-mute mb-3">Why operators trust us</div>
+        <ul class="space-y-3 text-sm text-ink">
+          <li class="flex gap-2.5"><span class="text-accent mt-0.5">✓</span>We take no commission, finder's fee, or rebate from any installer.</li>
+          <li class="flex gap-2.5"><span class="text-accent mt-0.5">✓</span>Reports are signed by a chartered engineer with the IEI.</li>
+          <li class="flex gap-2.5"><span class="text-accent mt-0.5">✓</span>Accepted by AIB, Bank of Ireland, and the IHF Energy Programme.</li>
+          <li class="flex gap-2.5"><span class="text-accent mt-0.5">✓</span>Real client, real number: Lakeview House, Kerry, 62 rooms, year 6.9 payback.</li>
+        </ul>
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center gap-2">
+        <span class="chip"><span class="chip-dot"></span>SEAI Registered Energy Auditor</span>
+        <span class="chip">ACA Triple-E familiarity</span>
+        <span class="chip">C.Eng MIEI on every report</span>
+      </div>
+    </div>
+
+    <form class="lg:col-span-7 bg-white border border-line rounded-xl p-6 lg:p-8" novalidate>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label for="h-name" class="block text-sm font-medium text-ink">Your name</label>
+          <input id="h-name" type="text" autocomplete="name" required class="mt-2 w-full px-3 py-2.5 border border-line rounded-md focus:outline-none focus:border-accent text-ink"/>
+        </div>
+        <div>
+          <label for="h-hotel" class="block text-sm font-medium text-ink">Hotel name</label>
+          <input id="h-hotel" type="text" autocomplete="organization" required class="mt-2 w-full px-3 py-2.5 border border-line rounded-md focus:outline-none focus:border-accent text-ink"/>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="h-mprn" class="block text-sm font-medium text-ink">MPRN <span class="text-mute font-normal">(or tick the box below)</span></label>
+          <input id="h-mprn" type="text" inputmode="numeric" placeholder="11 digits, on your ESB bill" class="mt-2 w-full px-3 py-2.5 border border-line rounded-md focus:outline-none focus:border-accent text-ink num"/>
+          <label class="mt-2 flex items-center gap-2 text-sm text-body">
+            <input type="checkbox" class="rounded border-line"/>
+            I'll send a scan of my last electricity bill instead.
+          </label>
+        </div>
+
+        <div>
+          <label for="h-rooms" class="block text-sm font-medium text-ink">Room count</label>
+          <input id="h-rooms" type="number" min="6" placeholder="e.g. 62" class="mt-2 w-full px-3 py-2.5 border border-line rounded-md focus:outline-none focus:border-accent text-ink num"/>
+        </div>
+        <div>
+          <label for="h-county" class="block text-sm font-medium text-ink">County</label>
+          <select id="h-county" class="mt-2 w-full px-3 py-2.5 border border-line rounded-md focus:outline-none focus:border-accent text-ink bg-white">
+            <option value="">Select…</option>
+            <option>Carlow</option><option>Cavan</option><option>Clare</option><option>Cork</option><option>Donegal</option>
+            <option>Dublin</option><option>Galway</option><option>Kerry</option><option>Kildare</option><option>Kilkenny</option>
+            <option>Laois</option><option>Leitrim</option><option>Limerick</option><option>Longford</option><option>Louth</option>
+            <option>Mayo</option><option>Meath</option><option>Monaghan</option><option>Offaly</option><option>Roscommon</option>
+            <option>Sligo</option><option>Tipperary</option><option>Waterford</option><option>Westmeath</option><option>Wexford</option><option>Wicklow</option>
+          </select>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="h-email" class="block text-sm font-medium text-ink">Email</label>
+          <input id="h-email" type="email" autocomplete="email" required class="mt-2 w-full px-3 py-2.5 border border-line rounded-md focus:outline-none focus:border-accent text-ink"/>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary mt-6 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-md font-medium">
+        Get my hotel's payback year
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <p class="mt-3 text-xs text-mute">We reply within one working day. Your meter data is held under a signed NDA and never shared with installers.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section id="faq" class="bg-paper border-b border-line">
+  <div class="max-w-3xl mx-auto px-5 lg:px-8 py-14 lg:py-20">
+    <div class="text-xs uppercase tracking-wider text-mute">Hotel questions, answered</div>
+    <h2 class="text-2xl lg:text-3xl mt-1">The four questions hotel owners ask us first.</h2>
+
+    <div class="mt-8 divide-y divide-line border-y border-line">
+      <details class="py-5 group">
+        <summary class="flex items-start justify-between gap-4">
+          <span class="text-ink font-medium text-lg">My accountant has never claimed ACA. Is it real?</span>
+          <span class="faq-plus text-mute text-2xl leading-none mt-1">+</span>
+        </summary>
+        <p class="mt-3 text-body leading-relaxed">It is. ACA (Accelerated Capital Allowance) is administered by Revenue against equipment listed on the SEAI Triple-E Product Register. We flag in the report which inverter and panel makes on your installer's quote are eligible and which are not. Most hotel accountants we work with are happy once they see the supporting documentation.</p>
+      </details>
+      <details class="py-5">
+        <summary class="flex items-start justify-between gap-4">
+          <span class="text-ink font-medium text-lg">We're loss-making this year. Can we still take ACA?</span>
+          <span class="faq-plus text-mute text-2xl leading-none mt-1">+</span>
+        </summary>
+        <p class="mt-3 text-body leading-relaxed">The unused allowance carries forward indefinitely against future trading profits, so the cash benefit lands the year you next make a taxable profit. We model both cases (relief in year 1 vs. relief deferred to year 3) so you see both payback paths.</p>
+      </details>
+      <details class="py-5">
+        <summary class="flex items-start justify-between gap-4">
+          <span class="text-ink font-medium text-lg">Our installer says we need a battery. Do we?</span>
+          <span class="faq-plus text-mute text-2xl leading-none mt-1">+</span>
+        </summary>
+        <p class="mt-3 text-body leading-relaxed">Maybe. For a typical 60-room hotel without a leisure centre, we usually find batteries lengthen payback by 9 to 18 months even though they raise NPV. For a 120-room hotel with a pool plant cycling overnight, the picture often reverses. We always show you both scenarios side by side and explain which assumption flips the answer.</p>
+      </details>
+      <details class="py-5">
+        <summary class="flex items-start justify-between gap-4">
+          <span class="text-ink font-medium text-lg">Will solar affect our Green Hospitality grading?</span>
+          <span class="faq-plus text-mute text-2xl leading-none mt-1">+</span>
+        </summary>
+        <p class="mt-3 text-body leading-relaxed">Yes, positively. Renewable on-site generation contributes to the energy criteria for Gold and Platinum awards under Green Hospitality, and the data we provide (kWh generated, kWh self-consumed, CO₂ avoided against the all-island grid factor) is in the format their assessors look for. We can liaise directly with your assessor on request.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA STRIP ============================ -->
+<section class="border-b border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-14 grid md:grid-cols-12 gap-6 items-center">
+    <div class="md:col-span-8">
+      <h3 class="text-xl lg:text-2xl">An installer's quote is a starting price. <span class="underline-marker">A post-tax payback year is a decision.</span></h3>
+      <p class="text-body mt-2">€395, refunded if we cannot model your site. Twenty-four hours from data to PDF.</p>
+    </div>
+    <div class="md:col-span-4 flex md:justify-end">
+      <a href="#get-report" class="btn-primary inline-flex items-center gap-2 px-5 py-3 rounded-md font-medium">Get my hotel payback year</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="bg-white">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-10 grid md:grid-cols-12 gap-8 text-sm">
+    <div class="md:col-span-5">
+      <div class="flex items-center gap-2">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="16" r="16" fill="#FDEAB4"/>
+        <circle cx="16" cy="16" r="5" fill="#145735"/>
+        <line x1="16" y1="6" x2="16" y2="9" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="16" y1="26" x2="16" y2="23" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="6" y1="16" x2="9" y2="16" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="26" y1="16" x2="23" y2="16" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="8.9" y1="8.9" x2="11" y2="11" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="23.1" y1="8.9" x2="21" y2="11" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="8.9" y1="23.1" x2="11" y2="21" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+        <line x1="23.1" y1="23.1" x2="21" y2="21" stroke="#145735" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+        <span class="font-semibold text-ink">WattProfit</span>
+      </div>
+      <p class="text-mute mt-3 max-w-sm">Independent solar ROI modelling for Irish businesses. Cork, Ireland. Registered SEAI Energy Auditor.</p>
+    </div>
+    <div class="md:col-span-2">
+      <div class="text-ink font-medium">Sectors</div>
+      <ul class="mt-2 space-y-1.5 text-body">
+        <li><a href="dairy.html" class="hover:text-ink">Dairy farms</a></li>
+        <li><a href="hotels.html" class="hover:text-ink">Hotels</a></li>
+        <li><a href="index.html#get-report" class="hover:text-ink">Other sectors</a></li>
+      </ul>
+    </div>
+    <div class="md:col-span-2">
+      <div class="text-ink font-medium">Resources</div>
+      <ul class="mt-2 space-y-1.5 text-body">
+        <li><a href="index.html#sample" class="hover:text-ink">Sample report</a></li>
+        <li><a href="#faq" class="hover:text-ink">FAQ</a></li>
+        <li><a href="index.html#how" class="hover:text-ink">How it works</a></li>
+      </ul>
+    </div>
+    <div class="md:col-span-3">
+      <div class="text-ink font-medium">Contact</div>
+      <ul class="mt-2 space-y-1.5 text-body">
+        <li>hello@wattprofit.ie</li>
+        <li>+353 21 555 0184</li>
+        <li>Penrose Wharf, Cork T23</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-line">
+    <div class="max-w-6xl mx-auto px-5 lg:px-8 py-5 flex flex-wrap gap-3 justify-between text-xs text-mute">
+      <span>© 2026 WattProfit Ltd. Company no. 712 094.</span>
+      <span>Privacy · Terms · Installer conflicts policy</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================ STICKY MOBILE CTA ============================ -->
+<div class="md:hidden fixed bottom-3 inset-x-3 z-50">
+  <a href="#get-report" class="btn-primary block text-center rounded-md font-medium py-3 shadow-lift">Get my hotel payback year</a>
+</div>
+
+</body>
+</html>
